@@ -16,6 +16,6 @@ If you want an icon to change color on hover, add the class "icon-hover". eg
 <span class="icon icon-pin icon-white icon-hover"></span>
 ```
 ## Customization: 
-You can customize the colors and corresponding class names by update the values of the colors and colorNames arrays in SpriteIcons.java
+You can customize the colors and corresponding class names by update the values of arrays 'colors' and 'colorNames' in SpriteIcons.java
 
 RGB color values are used (eg. sky blue is:  [20,108,173] )
