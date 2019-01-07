@@ -56,33 +56,37 @@ public class SpriteIcons {
         width = width /2;
         height = height / 2;
         String css =    ".icon{\n" +
-                        "   display: inline-block;\n" +
-                        "   background: url('icons.png') no-repeat;\n" +
-                        "   overflow: hidden;\n" +
-                        "   text-indent: -9999px;\n" +
-                        "   text-align: left;\n" +
-                        "   width: 16px;\n" +
-                        "   height: 16px;\n" +
-                        "   background-size: " + width + "px " + height + "px;\n" +
-                        "   margin-top: 2px;\n" +
-                        "}\n" +
+                "   display: inline-block;\n" +
+                "   background: url('icons.png') no-repeat;\n" +
+                "   overflow: hidden;\n" +
+                "   text-indent: -9999px;\n" +
+                "   text-align: left;\n" +
+                "   width: 16px;\n" +
+                "   height: 16px;\n" +
+                "   background-size: " + width + "px " + height + "px;\n" +
+                "   margin-top: 2px;\n" +
+                "}\n" +
 
-                        ".icon.icon-left{\n" +
-                        "   float: left;\n" +
-                        "   margin-right: 7px;\n" +
-                        "}\n" +
-                        ".icon.icon-right{\n" +
-                        "   float: right;\n" +
-                        "   margin-right: 7px;\n" +
-                        "}\n" +
-                        ".icon.icon-md{\n" +
-                        "    background-size: 120px 456px;\n" +
-                        "    width: 24px; height: 24px;\n" +
-                        "}\n" +
-                        ".icon.icon-lg{\n" +
-                        "    background-size: 180px 684px;\n" +
-                        "    width: 36px; height: 36px;\n" +
-                        "}\n";
+                ".icon.icon-left{\n" +
+                "   float: left;\n" +
+                "   margin-right: 7px;\n" +
+                "}\n" +
+                ".icon.icon-right{\n" +
+                "   float: right;\n" +
+                "   margin-right: 7px;\n" +
+                "}\n" +
+                ".icon.icon-sm{\n" +
+                "    background-size: " + (width/2) + "px " + (height / 2) + "px;\n" +
+                "    width: 8px; height: 8px;\n" +
+                "}\n" +
+                ".icon.icon-md{\n" +
+                "    background-size: " + ( (width * 4) / 3) + "px " + ((height * 4) / 3) + "px;\n" +
+                "    width: 24px; height: 24px;\n" +
+                "}\n" +
+                ".icon.icon-lg{\n" +
+                "    background-size: " + (width*2) + "px " + (height*2) + "px;\n" +
+                "    width: 36px; height: 36px;\n" +
+                "}\n";
 
         String name;
         int x,y;
@@ -94,6 +98,7 @@ public class SpriteIcons {
             name = name.substring(0, name.lastIndexOf('.'));
 
             css += ".icon-" + name + "{background-position: -" + x + "px -" + y + "px;}\n";
+            css += ".icon-" + name + ".icon-sm{background-position: -" + x + "px -" + ( (i * 9) ) + "px;}\n";
             css += ".icon-" + name + ".icon-md{background-position: -" + x + "px -" + ( (i * 24) + 2 ) + "px;}\n";
             css += ".icon-" + name + ".icon-lg{background-position: -" + x + "px -" + ( (i * 36) + 2 ) + "px;}\n";
             //print colors
@@ -103,15 +108,18 @@ public class SpriteIcons {
         for (int j = 0; j < colorNames.length; j++) {
             x = (j * 18) + 2;
             css += ".icon-" + colorNames[j] + "{background-position-x: -" + x + "px;}\n";
+            css += ".icon-" + colorNames[j] + ".icon-sm{background-position-x: -" + ((j * 9) ) + "px;}\n";
             css += ".icon-" + colorNames[j] + ".icon-md{background-position-x: -" + ((j * 24) + 2) + "px;}\n";
             css += ".icon-" + colorNames[j] + ".icon-lg{background-position-x: -" + ((j * 36) + 2) + "px;}\n";
         }
 
         css += ".icon-hover:hover{background-position-x: -" + ((18 * (colorNames.length - 1 )) + 2 ) + "px;}\n";
+        css += ".icon-hover.icon-sm:hover{background-position-x: -" + ((9 * (colorNames.length - 1 )) ) + "px;}\n";
         css += ".icon-hover.icon-md:hover{background-position-x: -" + ((24 * (colorNames.length - 1 )) + 2 ) + "px;}\n";
         css += ".icon-hover.icon-lg:hover{background-position-x: -" + ((36 * (colorNames.length - 1 )) + 2 ) + "px;}\n";
 
         css += ".icon-" + colorNames[colorNames.length - 1] + ".icon-hover:hover{background-position-x: -2px;}\n";
+        css += ".icon-" + colorNames[colorNames.length - 1] + ".icon-sm.icon-hover:hover{background-position-x: 0px;}\n";
         css += ".icon-" + colorNames[colorNames.length - 1] + ".icon-md.icon-hover:hover{background-position-x: -2px;}\n";
         css += ".icon-" + colorNames[colorNames.length - 1] + ".icon-lg.icon-hover:hover{background-position-x: -2px;}\n";
 
@@ -130,17 +138,17 @@ public class SpriteIcons {
     private static void genHtml(File[] files){
         String name;
         String html =   "<!DOCTYPE html>\n" +
-                        "<html lang='en'>\n" +
-                        "<head>\n" +
-                        "    <meta charset='UTF-8'>\n" +
-                        "    <title>Sprite Icons</title>\n" +
-                        "    <link rel='stylesheet' type='text/css' href='icons.css'>\n" +
-                        "</head>\n" +
-                        "<body style='background: #ffe188;'>\n" +
-                        "    <div style='width: 630px; max-width: 100%; margin: auto;'>\n" +
-                        "       <h1 style='text-align:center;'>refreshing sprite</h1>\n" +
-                        "       <div style='width: 110px; max-width: 50%; padding: 18px; float:left'>\n" +
-                        "           <p>default size: </p>";
+                "<html lang='en'>\n" +
+                "<head>\n" +
+                "    <meta charset='UTF-8'>\n" +
+                "    <title>Sprite Icons</title>\n" +
+                "    <link rel='stylesheet' type='text/css' href='icons.css'>\n" +
+                "</head>\n" +
+                "<body style='background: #ffe188;'>\n" +
+                "    <div style='width: 710px; max-width: 100%; margin: auto;'>\n" +
+                "       <h1 style='text-align:center;'>refreshing sprite</h1>\n" +
+                "       <div style='width: 110px; max-width: 50%; padding: 18px; float:left'>\n" +
+                "           <p>default size: </p>";
 
 
         for (int i = 0; i < files.length; i++) {
@@ -153,8 +161,21 @@ public class SpriteIcons {
         }
 
         html +=         "    </div>\n" +
-                        "    <div style='width: 168px; max-width: 50%; padding: 18px; float:left'>\n" +
-                        "       <p>.icon-md</p>";
+                "    <div style='width: 67px; max-width: 50%; padding: 18px; float:left'>\n" +
+                "       <p>.icon-sm</p>";
+
+        for (int i = 0; i < files.length; i++) {
+            name = files[i].getName();
+            name = name.substring(0, name.lastIndexOf('.'));
+            for (int j = 0; j < colorNames.length; j++) {
+                html += "<span class='icon icon-" + name + " icon-" + colorNames[j] + " icon-hover icon-sm'></span>";
+            }
+            html += "<br>";
+        }
+
+        html +=         "    </div>\n" +
+                "    <div style='width: 168px; max-width: 50%; padding: 18px; float:left'>\n" +
+                "       <p>.icon-md</p>";
 
         for (int i = 0; i < files.length; i++) {
             name = files[i].getName();
@@ -164,6 +185,8 @@ public class SpriteIcons {
             }
             html += "<br>";
         }
+
+
 
         html +=         "    </div>\n" +
                 "    <div style='width: 220px; max-width: 50%; padding: 18px; float:left'>\n" +
@@ -179,9 +202,9 @@ public class SpriteIcons {
         }
 
         html +=         "       </div>\n" +
-                        "   </div>\n" +
-                        "</body>\n" +
-                        "</html>";
+                "   </div>\n" +
+                "</body>\n" +
+                "</html>";
         try(PrintStream out = new PrintStream(new FileOutputStream("icons_output/index.html"))){
             out.print(html);
         }
