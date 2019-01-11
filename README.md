@@ -1,8 +1,13 @@
 # spriteIcons
-Generates a css/png icon sprite from 32x32 icon files.
+Generates a css/png icon sprite from 32x32 png icon files. A common source for these types of icons is defaulticon.com
 
-## Requirements
-Original icons must be 32x32 png files stored in the icons_input directory. A good source for for 32px icons is defaulticon.com
+## To generate icons
+* Make sure your icons are 32x32 pixels
+* Your icons' filenames will be used to generate css class names, so name them accordingly (ie. "search.png", "menu.png")
+* Place your icons in the icons_input directory
+* Run SpriteIcons.java
+
+This will generate a png sprite, corresponding css, and a sample html file (for reference and testing).
 
 ## Adding icons to html: 
 A typical use would be: 
