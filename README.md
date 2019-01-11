@@ -3,11 +3,11 @@ Generates a css/png icon sprite from 32x32 png icon files. A common source for t
 
 ## To generate icons
 * Make sure your icons are 32x32 pixels
-* Your icons' filenames will be used to generate css class names, so name them accordingly (ie. "search.png", "menu.png")
+* Your icons' filenames will be used to generate CSS class names, so name them accordingly (ie. "search.png", "menu.png")
 * Place your icons in the icons_input directory
 * Run SpriteIcons.java
 
-This will generate a png sprite, corresponding css, and a sample html file (for reference and testing).
+This will generate a png sprite, corresponding CSS, and a sample html file (for reference and testing).
 
 ## Adding icons to html: 
 A typical use would be: 
